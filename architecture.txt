@@ -1,0 +1,19 @@
+In this backend project I have handled:
+1. Overlap bookings: If the user tries to book for a date range overlapping with previous bookings, we can easily check that by
+                     running a query to find all the bookings where
+                      start_date < request_start_date AND end_date > request_end_date
+2. Overlap bookings during concurrent booking: Here if two users try to book at the same time, we are using 
+                                               SELECT.....FOR UPDATE
+                                               in the sql query under a TRANSACTION
+                                               This helps us to lock a row while writing into it and by the time another user's request
+                                               will be executed, we will again check for any overlap booking, thus we are using pessimistic
+                                               concurrency control where we do lock resources before commit and all other transactions wait
+                                               for resources.
+3. How to scale the system in future: We are currently using FOR UPDATE which locks the resources before commit, but this will slow
+                                      down the application if there are a large number of requests. We can use optimistic concurrency
+                                      control for this where we can maintain a version number and timestamp to avoid overlapping. 
+                                      But even this can get complex as checking for overlap ranges will be difficult to check for all
+                                      the versions that were created in the mid-time of a TRANSACTION. 
+                                      We can also use PostgreSQL which allows
+                                       EXCLUDE and ADD CONSTRAINT 
+                                      for concurrency control while checking for overlap ranges.
