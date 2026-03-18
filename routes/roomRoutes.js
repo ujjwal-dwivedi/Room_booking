@@ -4,7 +4,7 @@ import isAuthenticated from '../middleware/isAuthenticated.js';
 
 const router=Router();
 
-router.get('/', isAuthenticated, getAll);
+router.get('/', getAll);
 router.get('/:id', isAuthenticated, getById);
 router.post('/', isAuthenticated, createRoom);
 router.put('/:id', isAuthenticated, update);

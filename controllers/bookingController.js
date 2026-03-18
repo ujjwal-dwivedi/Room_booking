@@ -41,18 +41,8 @@ export const getByRoomId=async(req,res)=>{
   }
 };
 
-export const updateByUserId=async (req,res) =>{
-  try{
-    const {start_date, end_date}=req.body;
-    const result=await updateBookingService(req.params.id, req.user.id, start_date, end_date);
-    return res.status(result.statusCode).json(result);
-  }catch(error)
-  {
-    return res.status(500).json({message:error.message});
-  }
-};
 
-export const deleteByUserId=async (req,res) =>{
+export const deleteById=async (req,res) =>{
   try{
     const result = await deleteBookingService(req.params.id, req.user.id);
     return res.status(result.statusCode).json(result);
