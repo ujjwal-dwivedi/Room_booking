@@ -25,7 +25,11 @@ export const updateRoomService=async(id,name,price,address,max_adults_allowed)=>
   {
     return {success:false, statusCode:404, message:'Room not found.'};
   }
-  await updateRoom(id, name, price,address, max_adults_allowed);
+  const updatedName= name?? room.name;
+  const updatedPrice= price?? room.price;
+  const updatedAddress= address?? room.address;
+  const updatedMaxAdults= max_adults_allowed?? room.max_adults_allowed;
+  await updateRoom(id, updatedName, updatedPrice,updatedAddress, updatedMaxAdults);
   return {success:true, statusCode:200, message:'Room updated successfully.'};
 };
 

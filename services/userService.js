@@ -70,7 +70,10 @@ export const updateUserService = async (userId, name, gender, dob) => {
       message: 'User not found.'
     };
   }
-  await updateUser(userId, name, gender, dob);
+  const updatedName= name?? user.name;
+  const updatedGender= gender?? user.gender;
+  const updatedDob= dob?? user.dob;
+  await updateUser(userId, updatedName, updatedGender, updatedDob);
   return {
     success:true,
     statusCode:200,
