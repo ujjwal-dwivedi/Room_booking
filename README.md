@@ -2,6 +2,9 @@
 
 A REST API for booking hotel rooms built with Node.js, Express and MySQL.
 
+## Live Link
+[https://room-booking-js2u.onrender.com](https://room-booking-js2u.onrender.com)
+
 ## Setup
 
 ### 1.Clone and install
